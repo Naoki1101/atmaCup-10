@@ -7,4 +7,5 @@ cd ../src
 # python features/03_count_encode.py
 # python features/04_target_encode.py
 # python features/05_agg.py
-python features/06_color_agg.py
+# python features/06_color_agg.py
+python features/07_material_lda.py

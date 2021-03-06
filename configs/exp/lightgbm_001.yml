@@ -1,5 +1,5 @@
 common:
-    seed: &seed 2020
+    seed: &seed 2021
     metrics:
         name: rmsle
         params: {}

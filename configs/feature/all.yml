@@ -264,6 +264,16 @@ features:
 - dating_sorting_date
 - dating_year_early
 - dating_year_late
+- lda_material_by_object_id_0
+- lda_material_by_object_id_1
+- lda_material_by_object_id_2
+- lda_material_by_object_id_3
+- lda_material_by_object_id_4
+- lda_material_by_object_id_5
+- lda_material_by_object_id_6
+- lda_material_by_object_id_7
+- lda_material_by_object_id_8
+- lda_material_by_object_id_9
 - principal_maker
 - principal_or_first_maker
 - te_acquisition_credit_line_by_likes
