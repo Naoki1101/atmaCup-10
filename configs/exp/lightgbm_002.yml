@@ -25,13 +25,12 @@ data:
     adversarial_validation: False
 
 validation:
-    name: KFold
+    name: GroupKFold
     params:
         n_splits: 5
-        random_state: *seed
     split:
         y: likes
-        groups:
+        groups: art_series_id
     weight: average
     single: False
 
