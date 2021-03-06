@@ -63,9 +63,9 @@ def main():
         train_y = factory.get_target(cfg.data.target)
 
         if debug:
-            train_x = train_x.iloc[:50_000]
-            test_x = train_x.iloc[:50_000]
-            train_y = train_y.iloc[:50_000]
+            train_x = train_x.iloc[: int(len(train_x) * 0.1)]
+            test_x = train_x.iloc[: int(len(test_x) * 0.1)]
+            train_y = train_y.iloc[: int(len(train_x) * 0.1)]
 
     with t.timer("add oof"):
         if cfg.data.features.oof.name is not None:
@@ -106,7 +106,7 @@ def main():
     with t.timer("make submission"):
         sub_df = pd.read_csv(const.SAMPLE_SUB_PATH)
         if debug:
-            sub_df = sub_df.iloc[:50_000]
+            sub_df = sub_df.iloc[: int(len(test_x) * 0.1)]
 
         sub_df[const.TARGET_COLS[0]] = preds
         sub_df.to_csv(const.OUTPUT_DATA_DIR / f"{run_name_cv}.csv", index=False)
@@ -124,9 +124,9 @@ def main():
         notificator.send_line()
         # notificator.send_notion()
 
-    # with t.timer("git"):
-    #     git = Git()
-    #     git.push(comment=run_name_cv)
+    with t.timer("git"):
+        git = Git()
+        git.push(comment=run_name_cv)
 
 
 if __name__ == "__main__":

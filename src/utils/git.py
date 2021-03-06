@@ -1,3 +1,8 @@
+import os
+
+import git
+
+
 class Git:
     def __init__(self):
         os.chdir("../")
