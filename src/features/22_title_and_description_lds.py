@@ -15,7 +15,13 @@ def get_features(df: pd.DataFrame):
 
     df["description_and_long_title"] = df["description"] + df["long_title"]
 
-    for col in ["description", "long_title", "description_and_long_title"]:
+    for col in [
+        "title",
+        "description",
+        "long_title",
+        "more_title",
+        "description_and_long_title",
+    ]:
         lda = LDA(n_topics=TOPIC_NUM, n_iter=1_000, random_state=0)
         topic_array, index_list = lda.get_topic_array(
             df, index_name="object_id", token_name=col
