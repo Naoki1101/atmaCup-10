@@ -301,6 +301,16 @@ features:
 - lda_production_place_name_by_object_id_7
 - lda_production_place_name_by_object_id_8
 - lda_production_place_name_by_object_id_9
+- lda_technique_name_by_object_id_0
+- lda_technique_name_by_object_id_1
+- lda_technique_name_by_object_id_2
+- lda_technique_name_by_object_id_3
+- lda_technique_name_by_object_id_4
+- lda_technique_name_by_object_id_5
+- lda_technique_name_by_object_id_6
+- lda_technique_name_by_object_id_7
+- lda_technique_name_by_object_id_8
+- lda_technique_name_by_object_id_9
 - material_num_by_object_id
 - musical_instruments
 - paintings
@@ -316,3 +326,4 @@ features:
 - te_dating_presenting_date_by_likes
 - te_principal_maker_by_likes
 - te_principal_or_first_maker_by_likes
+- tequnique_num_by_object_id
