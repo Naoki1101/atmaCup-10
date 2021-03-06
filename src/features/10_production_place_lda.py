@@ -10,23 +10,25 @@ from feature_utils import save_features
 TOPIC_NUM = 10
 
 
-def preprocess_historical_person(historical_person_df: pd.DataFrame) -> pd.DataFrame:
-    historical_person_df["name"] = historical_person_df["name"].apply(
-        lambda x: x.replace("(", "( ")
+def preprocess_production_place(production_place_df: pd.DataFrame) -> pd.DataFrame:
+    production_place_df["unknown_flg"] = production_place_df["name"].apply(
+        lambda x: 1 if "?" in x else 0
     )
-    historical_person_df["name"] = historical_person_df["name"].apply(
-        lambda x: x.replace(")", " )")
+    production_place_df["name"] = production_place_df["name"].apply(
+        lambda x: x.replace("?", "").rstrip()
     )
+    return production_place_df
 
-    return historical_person_df
 
-
-def get_features(df: pd.DataFrame, historical_person_df: pd.DataFrame):
+def get_features(df: pd.DataFrame, production_place_df: pd.DataFrame):
     features_df = pd.DataFrame()
+
+    le = dict(production_place_df[["object_id", "unknown_flg"]].values)
+    features_df["production_place_unknown_flg"] = df["object_id"].map(le)
 
     lda = LDA(n_topics=TOPIC_NUM, n_iter=1_000, random_state=0)
     topic_array, index_list = lda.get_topic_array(
-        historical_person_df, index_name="object_id", token_name="name"
+        production_place_df, index_name="object_id", token_name="name"
     )
     topic_df = pd.DataFrame(
         topic_array, columns=[f"topic_{i}" for i in range(TOPIC_NUM)]
@@ -35,12 +37,12 @@ def get_features(df: pd.DataFrame, historical_person_df: pd.DataFrame):
 
     for i, col in enumerate(topic_df.columns):
         le = dict(topic_df[col])
-        features_df[f"lda_historical_person_name_by_object_id_{i}"] = (
+        features_df[f"lda_production_place_name_by_object_id_{i}"] = (
             df["object_id"].map(le).fillna(-1)
         )
 
-    le = dict(historical_person_df["object_id"].value_counts())
-    features_df["historical_person_num_by_object_id"] = df["object_id"].map(le)
+    le = dict(production_place_df["object_id"].value_counts())
+    features_df["production_place_num_by_object_id"] = df["object_id"].map(le)
 
     return features_df
 
@@ -48,13 +50,13 @@ def get_features(df: pd.DataFrame, historical_person_df: pd.DataFrame):
 def main():
     train_df = pd.read_feather(const.INPUT_DATA_DIR / "train.feather")
     test_df = pd.read_feather(const.INPUT_DATA_DIR / "test.feather")
-    historical_person_df = pd.read_feather(
-        const.INPUT_DATA_DIR / "historical_person.feather"
+    production_place_df = pd.read_feather(
+        const.INPUT_DATA_DIR / "production_place.feather"
     )
-    historical_person_df = preprocess_historical_person(historical_person_df)
+    production_place_df = preprocess_production_place(production_place_df)
 
     whole_df = pd.concat([train_df, test_df], axis=0, sort=False, ignore_index=True)
-    whole_features_df = get_features(whole_df, historical_person_df)
+    whole_features_df = get_features(whole_df, production_place_df)
 
     train_features_df = whole_features_df.iloc[: len(train_df)]
     test_features_df = whole_features_df.iloc[len(train_df) :]

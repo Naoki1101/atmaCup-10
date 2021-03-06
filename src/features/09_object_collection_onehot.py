@@ -6,8 +6,6 @@ sys.path.append("../src")
 import const
 from feature_utils import save_features
 
-TOPIC_NUM = 10
-
 
 def preprocess_object_collection(object_collection_df: pd.DataFrame) -> pd.DataFrame:
     object_collection_df = pd.crosstab(

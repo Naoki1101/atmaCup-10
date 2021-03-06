@@ -26,6 +26,9 @@ def get_features(df: pd.DataFrame, material_df: pd.DataFrame):
         le = dict(topic_df[col])
         features_df[f"lda_material_by_object_id_{i}"] = df["object_id"].map(le)
 
+    le = dict(material_df["object_id"].value_counts())
+    features_df["material_num_by_object_id"] = df["object_id"].map(le)
+
     return features_df
 
 
