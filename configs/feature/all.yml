@@ -1,4 +1,5 @@
 features:
+- Navy_Model_Room
 - acquisition_credit_line
 - acquisition_method
 - agg_color_b_max_by_object_id
@@ -264,6 +265,21 @@ features:
 - dating_sorting_date
 - dating_year_early
 - dating_year_late
+- dollhouse
+- drawings
+- glass
+- jewellery
+- lace
+- lda_historical_person_name_by_object_id_0
+- lda_historical_person_name_by_object_id_1
+- lda_historical_person_name_by_object_id_2
+- lda_historical_person_name_by_object_id_3
+- lda_historical_person_name_by_object_id_4
+- lda_historical_person_name_by_object_id_5
+- lda_historical_person_name_by_object_id_6
+- lda_historical_person_name_by_object_id_7
+- lda_historical_person_name_by_object_id_8
+- lda_historical_person_name_by_object_id_9
 - lda_material_by_object_id_0
 - lda_material_by_object_id_1
 - lda_material_by_object_id_2
@@ -274,8 +290,12 @@ features:
 - lda_material_by_object_id_7
 - lda_material_by_object_id_8
 - lda_material_by_object_id_9
+- musical_instruments
+- paintings
+- paper
 - principal_maker
 - principal_or_first_maker
+- prints
 - te_acquisition_credit_line_by_likes
 - te_acquisition_method_by_likes
 - te_copyright_holder_by_likes

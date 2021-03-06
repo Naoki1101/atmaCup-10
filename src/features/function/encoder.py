@@ -1,4 +1,5 @@
 import dataclasses
+from typing import List
 
 import numpy as np
 import pandas as pd
@@ -102,18 +103,3 @@ class TargetEncoder(_BaseEncoder):
 
     def _get_encoder(self, df):
         return df.groupby(self.feature_name)[self.target_name].mean().to_dict()
-
-
-class OneHotEncoder:
-    def __init__(self):
-        self.cat_features = None
-
-    def fit(self, cat_features):
-        self.cat_features = cat_features
-
-    def transform(self, df):
-        return pd.get_dummies(data=df, columns=self.cat_features)
-
-    def fit_transform(self, df, cat_features):
-        self.cat_features = cat_features
-        return pd.get_dummies(data=df, columns=self.cat_features)

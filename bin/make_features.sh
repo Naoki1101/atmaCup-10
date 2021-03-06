@@ -8,4 +8,6 @@ cd ../src
 # python features/04_target_encode.py
 # python features/05_agg.py
 # python features/06_color_agg.py
-python features/07_material_lda.py
+# python features/07_material_lda.py
+# python features/08_historical_person_lda.py
+python features/09_object_collection_onehot.py
