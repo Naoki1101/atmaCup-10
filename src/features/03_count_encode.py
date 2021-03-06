@@ -14,7 +14,7 @@ def get_features(df):
 
     for col in tqdm(const.CATEGORICAL_FEATURES):
         ce = CountEncoder()
-        features_df[col] = ce.fit_transform(df[col])
+        features_df[f"ce_{col}"] = ce.fit_transform(df[col])
 
     return features_df
 

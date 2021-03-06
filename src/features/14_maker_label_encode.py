@@ -1,7 +1,6 @@
 import sys
 
 import pandas as pd
-from tqdm import tqdm
 
 sys.path.append("../src")
 import const
@@ -9,12 +8,15 @@ from function import LabelEncoder
 from feature_utils import save_features
 
 
-def get_features(df):
+def get_features(df: pd.DataFrame, maker_df: pd.DataFrame):
     features_df = pd.DataFrame()
 
-    for col in tqdm(const.CATEGORICAL_FEATURES):
+    for col in ["place_of_birth", "place_of_death"]:
         le = LabelEncoder()
-        features_df[f"le_{col}"] = le.fit_transform(df[col])
+        maker_df[f"le_{col}"] = le.fit_transform(maker_df[col])
+
+        m2n = dict(maker_df[["name", f"le_{col}"]].values)
+        features_df[f"le_{col}"] = df["principal_maker"].map(m2n)
 
     return features_df
 
@@ -22,9 +24,10 @@ def get_features(df):
 def main():
     train_df = pd.read_feather(const.INPUT_DATA_DIR / "train.feather")
     test_df = pd.read_feather(const.INPUT_DATA_DIR / "test.feather")
+    maker_df = pd.read_feather(const.INPUT_DATA_DIR / "maker.feather")
 
     whole_df = pd.concat([train_df, test_df], axis=0, sort=False, ignore_index=True)
-    whole_features_df = get_features(whole_df)
+    whole_features_df = get_features(whole_df, maker_df)
 
     train_features_df = whole_features_df.iloc[: len(train_df)]
     test_features_df = whole_features_df.iloc[len(train_df) :]
