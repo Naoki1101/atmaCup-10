@@ -10,7 +10,7 @@ from feature_utils import save_features
 def get_features(df: pd.DataFrame):
     features_df = pd.DataFrame()
 
-    df["acquisition_year"] = pd.to_datetime(df["acquisition_year"])
+    df["acquisition_year"] = pd.to_datetime(df["acquisition_date"])
     features_df["acquisition_year"] = df["acquisition_year"].dt.year
 
     features_df["acquisition_year_diff_dating_year_early"] = (

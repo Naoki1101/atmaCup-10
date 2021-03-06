@@ -1,5 +1,8 @@
 features:
 - Navy_Model_Room
+- acquisition_year
+- acquisition_year_diff_dating_year_early
+- acquisition_year_diff_dating_year_late
 - age_of_death
 - agg_color_b_max_by_object_id
 - agg_color_b_mean_by_object_id

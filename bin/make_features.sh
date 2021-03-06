@@ -18,3 +18,5 @@ cd ../src
 # python features/14_maker_label_encode.py
 # python features/15_maker_count_encode.py
 # python features/16_sub_title.py
+python features/17_acquisition_date.py
+python features/18_art_series_id.py
