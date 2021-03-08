@@ -11,7 +11,7 @@ class Git:
     def push(self, comment):
         try:
             self.repo.git.add(".")
-            self.repo.git.commit("-m", f"{comment}")
+            self.repo.git.commit("-m", f"[EXP] {comment}")
             origin = self.repo.remote(name="origin")
             origin.push()
         except:

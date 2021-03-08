@@ -72,7 +72,6 @@ class Notion:
         item_dict: Dict
         """
         table = self.client.get_collection_view(self.url)
-        print(table)
         row = self._create_new_record(table)
 
         for col_name, value in item_dict.items():

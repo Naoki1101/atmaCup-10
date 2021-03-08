@@ -122,7 +122,7 @@ def main():
             params=notify_params,
         )
         notificator.send_line()
-        # notificator.send_notion()
+        notificator.send_notion()
 
     with t.timer("git"):
         git = Git()
