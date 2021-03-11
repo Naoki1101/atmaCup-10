@@ -67,6 +67,15 @@ def main():
             test_x = train_x.iloc[: int(len(test_x) * 0.1)]
             train_y = train_y.iloc[: int(len(train_x) * 0.1)]
 
+    with t.timer("preprocess"):
+        train_null_count = train_x.isnull().values.sum(axis=1)
+        test_null_count = test_x.isnull().values.sum(axis=1)
+
+        train_x["feature_null_count"] = train_null_count
+        test_x["feature_null_count"] = test_null_count
+
+        features.append("feature_null_count")
+
     with t.timer("add oof"):
         if cfg.data.features.oof.name is not None:
             oof, preds = factory.get_result(cfg.data.features.oof.name, cfg)

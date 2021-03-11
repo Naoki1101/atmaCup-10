@@ -13,4 +13,4 @@ cd ../src
 # python train.py -m 'lightgbm_009' -c 'custom_005'   # custom_002の方が良い
 # python train.py -m 'lightgbm_010' -c 'n_split=7'   # n_split=5とあんまり変わらないから5でいいかな
 # python train.py -m 'lightgbm_011' -c 'n_split=5'
-python train.py -m 'lightgbm_012' -c 'custom_007'
+python train.py -m 'lightgbm_012' -c 'custom_007'   # featuer_null_countを追加
