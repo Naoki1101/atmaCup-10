@@ -25,4 +25,5 @@ cd ../src
 # python features/21_principal_maker_occupation_onehot.py
 # python features/22_title_and_description_lds.py
 # python features/23_null.py
-python features/24_count_word.py
+# python features/24_count_word.py
+python features/25_material_w2v.py
