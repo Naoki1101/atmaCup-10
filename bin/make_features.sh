@@ -24,4 +24,5 @@ cd ../src
 # python features/20_principal_maker_lda.py
 # python features/21_principal_maker_occupation_onehot.py
 # python features/22_title_and_description_lds.py
-python features/23_null.py
+# python features/23_null.py
+python features/24_count_word.py

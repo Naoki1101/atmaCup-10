@@ -310,6 +310,11 @@ features:
 - ce_place_of_death
 - ce_principal_maker
 - ce_principal_or_first_maker
+- count_word_description
+- count_word_long_title
+- count_word_more_title
+- count_word_sub_title
+- count_word_title
 - dating_period
 - dating_sorting_date
 - dating_year_early
