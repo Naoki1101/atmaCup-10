@@ -1,0 +1,52 @@
+common:
+    seed: &seed 2021
+    metrics:
+        name: rmsle
+        params: {}
+    drop:
+
+data:
+    loader:
+        train:
+            data_type: train
+            reduce: False
+        test:
+            data_type: test
+            reduce: False
+    features:
+        name: custom_011
+        cat_features:
+        oof:
+            name:
+    target:
+        name: likes
+        convert_type: log1p
+        reconvert_type: expm1
+    adversarial_validation: False
+
+validation:
+    name: StratifiedKFold
+    params:
+        n_splits: 5
+    split:
+        y: likes_bin
+        groups:
+    weight: average
+    single: False
+
+model:
+    name: catboost
+    task_type: regression
+    params:
+        loss_function: RMSE
+        eval_metric: RMSE
+        learning_rate: 0.3
+        iterations: 10_000
+        random_seed: *seed
+        od_type: Iter
+        depth: 7
+        task_type: GPU
+    verbose_eval: 200
+    early_stopping_rounds: 200
+    imp_type: total_gain
+    feval:

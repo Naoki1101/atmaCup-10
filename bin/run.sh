@@ -21,10 +21,12 @@ cd ../src
 # python train.py -m 'lightgbm_017' -c 'titleの言語特徴量を追加'   # CVちょっと悪化してLBちょっと改善した
 # python train.py -m 'lightgbm_018' -c 'tfidf特徴量を追加'   # 悪化した
 # python train.py -m 'lightgbm_019' -c 'lightgbm_017をcopy, likes_binを使ったStratifiedKFold'   # 17とほぼ変わらず
-# python train.py -m 'lightgbm_020' -c 'lightgbm_017をcopyをcopy, seed=2022'
-# python train.py -m 'lightgbm_021' -c 'lightgbm_017をcopyをcopy, seed=2023'
-# python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopyをcopy, seed=2024'
-# python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopyをcopy, seed=2025'
+# python train.py -m 'lightgbm_020' -c 'lightgbm_017をcopy, seed=2022'
+# python train.py -m 'lightgbm_021' -c 'lightgbm_017をcopy, seed=2023'
+# python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopy, seed=2024'
+# python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopy, seed=2025'
+
+python train.py -m 'catboost_001' -c 'lightgbm_019がベース'
 
 
-python ensemble.py -m 'ensemble_001' -c 'seed avg, lgbm19 ~ 23'
+# python ensemble.py -m 'ensemble_001' -c 'seed avg, lgbm19 ~ 23'   # ほんの少し改善

@@ -1,0 +1,14 @@
+common:
+    seed: &seed 2021
+    metrics:
+        name: rmsle
+        params: {}
+    drop:
+
+opt_params:
+    direction: minimize
+    timeout: 3
+
+models:
+    - lightgbm_019_20210313151218_1.0052
+    - 

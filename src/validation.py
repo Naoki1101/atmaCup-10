@@ -52,8 +52,7 @@ class StratifiedKFold(_BaseKFold):
 
     def split(self, df: pd.DataFrame):
         y = (lambda x: df[x] if hasattr(df, x) else None)(self.y)
-        groups = (lambda x: df[x] if hasattr(df, x) else None)(self.groups)
-        return self.fold.split(df, y=y, groups=groups)
+        return self.fold.split(df, y=y)
 
 
 @dataclasses.dataclass
