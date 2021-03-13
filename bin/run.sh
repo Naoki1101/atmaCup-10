@@ -23,5 +23,5 @@ cd ../src
 # python train.py -m 'lightgbm_019' -c 'lightgbm_017をcopy, likes_binを使ったStratifiedKFold'   # 17とほぼ変わらず
 # python train.py -m 'lightgbm_020' -c 'lightgbm_017をcopyをcopy, seed=2022'
 # python train.py -m 'lightgbm_021' -c 'lightgbm_017をcopyをcopy, seed=2023'
-python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopyをcopy, seed=2024'
-# python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopyをcopy, seed=2025'
+# python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopyをcopy, seed=2024'
+python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopyをcopy, seed=2025'

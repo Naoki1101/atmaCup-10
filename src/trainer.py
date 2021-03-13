@@ -1,11 +1,11 @@
 import sys
 import logging
 import dataclasses
-from typing import List, Dict, Optional
+from typing import List, Dict
 
+import optuna
 import numpy as np
 import pandas as pd
-from pathlib import Path
 
 sys.path.append("../src")
 import const
@@ -147,3 +147,33 @@ class Trainer:
         else:
             converted_array = array.copy()
         return converted_array
+
+
+def opt_ensemble_weight(
+    cfg: Dict, y_true: np.array, oof_list: List, metric: str
+) -> List[float]:
+    def objective(trial):
+        p_list = [0 for i in range(len(oof_list))]
+        for i in range(len(oof_list) - 1):
+            p_list[i] = trial.suggest_discrete_uniform(
+                f"p{i}", 0.0, 1.0 - sum(p_list), 0.01
+            )
+        p_list[-1] = round(1 - sum(p_list[:-1]), 2)
+
+        y_pred = np.zeros(len(y_true))
+        for i in range(len(oof_list)):
+            y_pred += oof_list[i] * p_list[i]
+
+        return metric(y_true, y_pred)
+
+    study = optuna.create_study(direction=cfg.opt_params.direction)
+    if hasattr(cfg.opt_params, "n_trials"):
+        study.optimize(objective, n_trials=cfg.opt_params.n_trials)
+    elif hasattr(cfg.opt_params, "timeout"):
+        study.optimize(objective, timeout=cfg.opt_params.timeout)
+    else:
+        raise (NotImplementedError)
+    best_params = list(study.best_params.values())
+    best_weight = best_params + [round(1 - sum(best_params), 2)]
+
+    return best_weight
