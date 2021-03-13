@@ -25,9 +25,10 @@ cd ../src
 # python train.py -m 'lightgbm_021' -c 'lightgbm_017をcopy, seed=2023'
 # python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopy, seed=2024'
 # python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopy, seed=2025'
+python train.py -m 'lightgbm_024' -c 'lightgbm_019をcopy, n_splits=10'
 
 # python train.py -m 'catboost_001' -c 'lightgbm_019がベース'
 
 
 # python ensemble.py -m 'ensemble_001' -c 'seed avg, lgbm19 ~ 23'   # ほんの少し改善
-python ensemble.py -m 'ensemble_002' -c 'seed avg, lgbm19, cat01'
+# python ensemble.py -m 'ensemble_002' -c 'seed avg, lgbm19, cat01'
