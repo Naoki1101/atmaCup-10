@@ -24,4 +24,7 @@ cd ../src
 # python train.py -m 'lightgbm_020' -c 'lightgbm_017をcopyをcopy, seed=2022'
 # python train.py -m 'lightgbm_021' -c 'lightgbm_017をcopyをcopy, seed=2023'
 # python train.py -m 'lightgbm_022' -c 'lightgbm_017をcopyをcopy, seed=2024'
-python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopyをcopy, seed=2025'
+# python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopyをcopy, seed=2025'
+
+
+python ensemble.py -m 'ensemble_001' -c 'seed avg, lgbm19 ~ 23'

@@ -7,10 +7,11 @@ common:
 
 opt_params:
     direction: minimize
-    timeout: 10
+    timeout: 3
 
 models:
     - lightgbm_019_20210313151218_1.0052
     - lightgbm_020_20210313151704_1.0063
     - lightgbm_021_20210313151914_1.0061
-    - 
+    - lightgbm_022_20210313152104_1.0066
+    - lightgbm_023_20210313152306_1.0060

@@ -1,13 +1,15 @@
 import argparse
 import datetime
 import warnings
+
+import pandas as pd
 import numpy as np
 from pathlib import Path
 
 import const
 import factory
 from trainer import opt_ensemble_weight
-from utils import DataHandler, Notificator, Timer, make_submission, seed_everything, Git
+from utils import DataHandler, Notificator, Timer, seed_everything, Git
 
 warnings.filterwarnings("ignore")
 
@@ -17,13 +19,13 @@ warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser()
 parser.add_argument("--common", default="../configs/common/compe.yml")
 parser.add_argument("--notify", default="../configs/common/notify.yml")
+parser.add_argument("-b", "--debug", action="store_true")
 parser.add_argument("-m", "--model")
 parser.add_argument("-c", "--comment")
 options = parser.parse_args()
 
 dh = DataHandler()
-cfg = dh.load(options.common)
-cfg.update(dh.load(f"../configs/exp/{options.model}.yml"))
+cfg = dh.load(f"../configs/exp/{options.model}.yml")
 
 notify_params = dh.load(options.notify)
 
@@ -33,6 +35,7 @@ now = datetime.datetime.now()
 run_name = f"{model_name}_{now:%Y%m%d%H%M%S}"
 
 logger_path = Path(f"../logs/{run_name}")
+debug = options.debug
 
 
 # ===============
@@ -66,8 +69,8 @@ def main():
             if drop_idx is not None:
                 model_oof = np.delete(model_oof, drop_idx, axis=0)
 
-            oof_list.append(model_oof)
-            preds_list.append(model_preds)
+            oof_list.append(model_oof.reshape(-1))
+            preds_list.append(model_preds.reshape(-1))
 
     with t.timer("optimize model weight"):
         metric = factory.get_metrics(cfg.common.metrics.name)
@@ -98,14 +101,12 @@ def main():
         print("\n===================================\n\n")
 
     with t.timer("make submission"):
-        output_path = f"../data/output/{run_name_cv}.csv"
-        make_submission(
-            y_pred=ensemble_preds,
-            target_name=const.TARGET_COLS[0],
-            sample_path=const.SAMPLE_SUB_PATH,
-            output_path=output_path,
-            comp=False,
-        )
+        sub_df = pd.read_csv(const.SAMPLE_SUB_PATH)
+        if debug:
+            sub_df = sub_df.iloc[: int(len(ensemble_preds) * 0.1)]
+
+        sub_df[const.TARGET_COLS[0]] = ensemble_preds
+        sub_df.to_csv(const.OUTPUT_DATA_DIR / f"{run_name_cv}.csv", index=False)
 
     with t.timer("notify"):
         process_minutes = t.get_processing_time()
