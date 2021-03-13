@@ -446,6 +446,7 @@ features:
 - le_place_of_death
 - le_principal_maker
 - le_principal_or_first_maker
+- le_title_language
 - material_num_by_object_id
 - musical_instruments
 - null_count

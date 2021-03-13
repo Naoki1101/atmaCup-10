@@ -29,4 +29,5 @@ cd ../src
 # python features/25_material_w2v.py
 # python features/26_technique_w2v.py
 # python features/27bert_description.py
-python features/27_bert_title_and_description.py
+# python features/27_bert_title_and_description.py
+python features/28_title_language.py

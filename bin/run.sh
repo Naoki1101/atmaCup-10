@@ -17,4 +17,5 @@ cd ../src
 # python train.py -m 'lightgbm_013' -c 'materialのw2v特徴量を追加'   # material w2vない方がLB高い...？
 # python train.py -m 'lightgbm_014' -c 'techniqueのw2v特徴量を追加'
 # python train.py -m 'lightgbm_015' -c '残差予測'
-python train.py -m 'lightgbm_016' -c 'BERT特徴量を追加'
+# python train.py -m 'lightgbm_016' -c 'BERT特徴量を追加'   # なかなかスコア上がった
+python train.py -m 'lightgbm_017' -c 'titleの言語特徴量を追加'
