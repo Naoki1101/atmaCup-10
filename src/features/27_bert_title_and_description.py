@@ -25,7 +25,7 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
         preprocessing.remove_stopwords,
     ]
 
-    for col in ["title", "description", "long_title"]:
+    for col in ["title", "description", "long_title", "acquisition_credit_line"]:
         df[col].fillna("NaN", inplace=True)
         df[f"{col}_normalized"] = hero.clean(df[col], custom_pipeline)
 
@@ -35,7 +35,7 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
 def get_features(df: pd.DataFrame) -> pd.DataFrame:
     features_df = pd.DataFrame()
 
-    for col in tqdm(["title", "description", "long_title"]):
+    for col in tqdm(["title", "description", "long_title", "acquisition_credit_line"]):
         BSV = BertSequenceVectorizer()
         df[f"{col}_feature"] = df[f"{col}_normalized"].apply(lambda x: BSV.vectorize(x))
 

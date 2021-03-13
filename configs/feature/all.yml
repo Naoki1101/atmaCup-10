@@ -302,6 +302,10 @@ features:
 - agg_percentage_median_by_object_id
 - agg_percentage_min_by_object_id
 - agg_percentage_std_by_object_id
+- bert_acquisition_credit_line_tsne_0
+- bert_acquisition_credit_line_tsne_1
+- bert_acquisition_credit_line_umap_0
+- bert_acquisition_credit_line_umap_1
 - bert_description_tsne_0
 - bert_description_tsne_1
 - bert_description_umap_0
