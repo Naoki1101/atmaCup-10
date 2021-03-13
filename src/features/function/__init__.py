@@ -5,3 +5,4 @@ from .sparse import *
 from .w2v import *
 from .bert import *
 from .decomposition import *
+from .tfidf import *
