@@ -14,4 +14,5 @@ cd ../src
 # python train.py -m 'lightgbm_010' -c 'n_split=7'
 # python train.py -m 'lightgbm_011' -c 'n_split=5'
 # python train.py -m 'lightgbm_012' -c 'custom_007'
-python train.py -m 'lightgbm_013' -c 'materialのw2v特徴量を追加'
+# python train.py -m 'lightgbm_013' -c 'materialのw2v特徴量を追加'   # material w2vない方がLB高い...？
+python train.py -m 'lightgbm_014' -c 'techniqueのw2v特徴量を追加'

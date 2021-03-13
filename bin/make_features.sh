@@ -26,4 +26,5 @@ cd ../src
 # python features/22_title_and_description_lds.py
 # python features/23_null.py
 # python features/24_count_word.py
-python features/25_material_w2v.py
+# python features/25_material_w2v.py
+python features/26_technique_w2v.py
