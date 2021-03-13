@@ -10,7 +10,7 @@ from feature_utils import save_features
 OUT_DIM = 20
 
 
-def get_features(df: pd.DataFrame, material_df: pd.DataFrame):
+def get_features(df: pd.DataFrame, material_df: pd.DataFrame) -> pd.DataFrame:
     features_df = pd.DataFrame()
 
     w2v = Word2Vec()

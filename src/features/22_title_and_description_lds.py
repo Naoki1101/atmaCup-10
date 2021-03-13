@@ -10,7 +10,7 @@ from feature_utils import save_features
 TOPIC_NUM = 10
 
 
-def get_features(df: pd.DataFrame):
+def get_features(df: pd.DataFrame) -> pd.DataFrame:
     features_df = pd.DataFrame()
 
     df["description_and_long_title"] = df["description"] + df["long_title"]
