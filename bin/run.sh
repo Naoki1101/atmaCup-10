@@ -27,7 +27,8 @@ cd ../src
 # python train.py -m 'lightgbm_023' -c 'lightgbm_017をcopy, seed=2025'
 # python train.py -m 'lightgbm_024' -c 'lightgbm_019をcopy, n_splits=10'
 # python train.py -m 'lightgbm_025' -c 'BERT acquisition_credit_line特徴量を追加'   # ちょっと悪化
-python train.py -m 'lightgbm_026' -c '残差予測'
+# python train.py -m 'lightgbm_026' -c '残差予測'
+python train.py -m 'lightgbm_027' -c 'lightgbm_026のoofを特徴量に追加'
 
 # python train.py -m 'catboost_001' -c 'lightgbm_019がベース'
 
